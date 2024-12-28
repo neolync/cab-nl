@@ -1,9 +1,8 @@
-
-
-// Firebase setup
+// Import the Firebase libraries as ES modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCkAk6wtJFRflh38HyAcVh1WqTnrW44wgc",
     authDomain: "cab-test-nl.firebaseapp.com",
@@ -14,9 +13,11 @@ const firebaseConfig = {
     measurementId: "G-13NMCXQTBV"
   };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Function to save data
 async function saveData() {
     const name = document.getElementById('hodName').value;
     const time = document.getElementById('leavingTime').value;
