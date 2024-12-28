@@ -1,7 +1,3 @@
-// Import the Firebase libraries as ES modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
-
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCkAk6wtJFRflh38HyAcVh1WqTnrW44wgc",
@@ -11,12 +7,11 @@ const firebaseConfig = {
     messagingSenderId: "478413853479",
     appId: "1:478413853479:web:59e1f9af1064b72337cf02",
     measurementId: "G-13NMCXQTBV"
-  };
+};
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(app);
 
 // Function to save data
 async function saveData() {
@@ -29,7 +24,7 @@ async function saveData() {
     }
 
     try {
-        await addDoc(collection(db, "schedules"), {
+        await db.collection("schedules").add({
             name,
             time,
             timestamp: new Date()
@@ -42,3 +37,6 @@ async function saveData() {
         document.getElementById('responseMessage').className = 'text-danger';
     }
 }
+
+// Add event listener to the Submit button
+document.getElementById("submitButton").addEventListener("click", saveData);
